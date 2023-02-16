@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Navbar = () => {
 	const [mobileNavActive, setMobileNavActive] = useState(false);
-	const menuItems = ["Home", "Blog", "Third", "Fourth"];
+	const menuItems = ["Home", "Blog", "About"];
 
 	const handleMobileNav = () => {
 		setMobileNavActive((mobileNavActive) => !mobileNavActive);
@@ -28,10 +28,10 @@ const Navbar = () => {
 					</div>
 					<ul className="flex">
 						<li>
-							<Image className="mr-5" src="/white-arrow.svg" width={24} height={24} alt="" />
+							<Image className="mr-5 cursor-pointer" src="/icons/linkedin.svg" width={34} height={34} alt="" />
 						</li>
 						<li>
-							<Image className="mr-5" src="/white-arrow.svg" width={24} height={24} alt="" />
+							<Image className="mr-5 cursor-pointer" src="/icons/github.svg" width={34} height={34} alt="" />
 						</li>
 					</ul>
 				</div>
