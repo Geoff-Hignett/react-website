@@ -46,11 +46,11 @@ export default function Home({ latestThreePosts }) {
 			</div>
 
 			{/* latest posts */}
-			<div className="max-w-theme mx-auto py-10 lg:py-20 px-3">
+			<div className="max-w-theme mx-auto pt-10 lg:pt-20 lg:pb-10 px-3">
 				<h2 className="font-poppins text-xl font-bold mb-5 md:text-center">Latest Blog Posts</h2>
-				<div className="flex flex-col md:flex-row justify-between ">
+				<div className="flex flex-wrap flex-col md:flex-row justify-between ">
 					{latestThreePosts.map(({ id, imagePath, category, date, extract, title }) => (
-						<div key={id} className="w-full md:w-[30%] mb-10">
+						<div key={id} className="w-full md:w-[48%] lg:w-[30%] mb-10">
 							<div className="relative sm:h-[23vh] h-[275px]">
 								<Image className="absolute bottom-0 left-0 object-cover" src={imagePath} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" alt="" />
 								<div className="absolute -bottom-5 left-8 bg-black p-3">

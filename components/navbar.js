@@ -14,7 +14,7 @@ const Navbar = () => {
 		<>
 			<nav className="bg-black w-full">
 				<div className="max-w-theme mx-auto flex items-center justify-between py-5 px-3">
-					<ul className="hidden md:flex">
+					<ul className="hidden md:flex nav-pages">
 						{menuItems.map((item, index) => (
 							<li key={index} className="text-white font-poppins mr-12">
 								<Link href={`${item === "Home" ? "/" : "/" + item.toLowerCase()}`}>{item}</Link>
@@ -28,10 +28,14 @@ const Navbar = () => {
 					</div>
 					<ul className="flex">
 						<li>
-							<Image className="mr-5 cursor-pointer" src="/icons/linkedin.svg" width={34} height={34} alt="" />
+							<a target="blank" href="https://www.linkedin.com/in/geoff-hignett-7680b617b">
+								<Image className="mr-5 cursor-pointer" src="/icons/linkedin.svg" width={34} height={34} alt="" />
+							</a>
 						</li>
 						<li>
-							<Image className="mr-5 cursor-pointer" src="/icons/github.svg" width={34} height={34} alt="" />
+							<a target="blank" href="https://github.com/Geoff-Hignett">
+								<Image className="mr-5 cursor-pointer" src="/icons/github.svg" width={34} height={34} alt="" />
+							</a>
 						</li>
 					</ul>
 				</div>

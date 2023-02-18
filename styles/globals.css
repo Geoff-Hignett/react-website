@@ -12,13 +12,13 @@
 	src: url("../public/fonts/Poppins-Regular.ttf");
 }
 
-nav li a {
+nav .nav-pages li a {
 	position: relative;
 	overflow: hidden;
 	z-index: 1;
 }
 
-nav li a:after {
+nav .nav-pages li a:after {
 	display: block;
 	position: absolute;
 	margin: 0;
@@ -34,11 +34,11 @@ nav li a:after {
 	background: transparent;
 }
 
-nav li a:hover {
+nav .nav-pages li a:hover {
 	color: #000;
 }
 
-nav li a:hover:after {
+nav .nav-pages li a:hover:after {
 	animation: circle 0.2s ease-in forwards;
 }
 
