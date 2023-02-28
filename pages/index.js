@@ -23,9 +23,10 @@ export default function Home({ latestThreePosts }) {
 			</Head>
 
 			{/* hero */}
-			<div className="h-96 bg-home-hero bg-contain relative">
+			<div className="h-96 bg-home-hero bg-cover bg-no-repeat relative">
+				<div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
 				<div className="max-w-theme h-full mx-auto flex items-center justify-between px-3">
-					<div className="w-full lg:w-1/3 font-poppins text-lg text-white">
+					<div className="w-full lg:w-1/3 font-poppins text-lg text-white relative">
 						<h1 className="text-5xl uppercase mb-5">Geoff Hignett</h1>
 						<p>Welcome to my website!</p>
 					</div>

@@ -33,7 +33,7 @@ module.exports = {
 				43: "43deg",
 			},
 			backgroundImage: {
-				"home-hero": "url('../public/matrix.jpg')",
+				"home-hero": "url('../public/test1.png')",
 			},
 			fontSize: {
 				xl: "1.375rem",
