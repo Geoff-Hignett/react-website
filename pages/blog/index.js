@@ -3,7 +3,7 @@ import { getSortedPostsData } from "@/lib/posts";
 import SectionBanner from "@/components/sectionBanner";
 import Link from "next/link";
 import Head from "next/head";
-import { useState } from "react";
+import { useState, useId } from "react";
 
 
 export async function getStaticProps() {
@@ -16,6 +16,7 @@ export async function getStaticProps() {
 }
 
 const Blog = ({ allPostsData }) => {
+	const catLabelId = useId();
 	const countCategoryPosts = (category) => {
 		return allPostsData.filter((post) => post.category === category).length;
 	}
@@ -24,36 +25,43 @@ const Blog = ({ allPostsData }) => {
 		{
 			name: "All",
 			active: true,
+			mobileActive: true,
 			posts: allPostsData.length,
 		},
 		{
 			name: "Category 1",
 			active: false,
+			mobileActive: false,
 			posts: countCategoryPosts("Category 1"),
 		},
 		{
 			name: "Category 2",
 			active: false,
+			mobileActive: false,
 			posts: countCategoryPosts("Category 2"),
 		},
 		{
 			name: "Category 3",
 			active: false,
+			mobileActive: false,
 			posts: countCategoryPosts("Category 3"),
 		},
 		{
 			name: "Category 4",
 			active: false,
+			mobileActive: false,
 			posts: countCategoryPosts("Category 4"),
 		},
 		{
 			name: "Category 5",
 			active: false,
+			mobileActive: false,
 			posts: countCategoryPosts("Category 5"),
 		},
 		{
 			name: "Category 6",
 			active: false,
+			mobileActive: false,
 			posts: countCategoryPosts("Category 6"),
 		},
 	]);
@@ -73,6 +81,14 @@ const Blog = ({ allPostsData }) => {
 		setCategories(newCategories);
 	}
 
+	const setMobileCategoryActive = (catIndex) => {
+		const newCategories = [ ...categories ];
+
+		setCategories([ ...categories.map((category, index) => {
+			index === catIndex ? category.mobileActive = true : category.mobileActive = false;
+		})])
+	}
+
 	return (
 		<>
 			<Head>
@@ -86,6 +102,14 @@ const Blog = ({ allPostsData }) => {
 			<section className="max-w-theme mx-auto pt-10 lg:py-20 lg:pb-10 px-3">
 				<div className="flex">
 					<div className="w-full md:w-1/2 lg:w-2/3 lg:pr-4">
+						<div className="flex justify-evenly mb-5">
+							<label className="font-bold" htmlFor={catLabelId}>Select Category: </label>
+							<select className="border-2 border-black" id={catLabelId} onChange={e => setMobileCategoryActive(e.target.value)}>
+								{categories.map((category, index) => (
+									<option className="" key={index} value={category.name}>{category.name}</option>
+								))}
+							</select>
+						</div>
 						<ul className="flex flex-wrap justify-between">
 							{allPostsData.map(({ id, imagePath, category, date, extract, title }) => (
 							<li key={id} className="w-full md:w-full lg:w-[48%] mb-10">
