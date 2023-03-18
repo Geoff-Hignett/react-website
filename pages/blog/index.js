@@ -3,8 +3,7 @@ import { getSortedPostsData } from "@/lib/posts";
 import SectionBanner from "@/components/sectionBanner";
 import Link from "next/link";
 import Head from "next/head";
-import { useState, useId } from "react";
-
+import { useState, useId, useEffect } from "react";
 
 export async function getStaticProps() {
 	const allPostsData = getSortedPostsData();
@@ -17,76 +16,96 @@ export async function getStaticProps() {
 
 const Blog = ({ allPostsData }) => {
 	const catLabelId = useId();
+
 	const countCategoryPosts = (category) => {
 		return allPostsData.filter((post) => post.category === category).length;
+	}
+
+	const getFilteredPosts = () => {
+		const activeCatName = categories.filter((category) => category.active)[0].name;
+		const test = allPostsData.filter((post) => post.category == activeCatName);
+		console.log(activeCatName);
+		console.log(test);
+		// return test;
+		// return allPostsData.filter((post) => post.category === activeCatName);
 	}
 
 	const [categories, setCategories] = useState([		
 		{
 			name: "All",
-			active: true,
-			mobileActive: true,
+			active: false,
 			posts: allPostsData.length,
 		},
 		{
 			name: "Category 1",
-			active: false,
-			mobileActive: false,
+			active: true,
 			posts: countCategoryPosts("Category 1"),
 		},
 		{
 			name: "Category 2",
 			active: false,
-			mobileActive: false,
 			posts: countCategoryPosts("Category 2"),
 		},
 		{
 			name: "Category 3",
 			active: false,
-			mobileActive: false,
 			posts: countCategoryPosts("Category 3"),
 		},
 		{
 			name: "Category 4",
 			active: false,
-			mobileActive: false,
 			posts: countCategoryPosts("Category 4"),
 		},
 		{
 			name: "Category 5",
 			active: false,
-			mobileActive: false,
 			posts: countCategoryPosts("Category 5"),
 		},
 		{
 			name: "Category 6",
 			active: false,
-			mobileActive: false,
 			posts: countCategoryPosts("Category 6"),
 		},
 	]);
 
+
 	const setCategoryActive = (catIndex) => {
-		const newCategories = [ ...categories ];
-
-		// if making all posts active uncheck all others
-		if(catIndex === 0 && categories[0].active === false){	
-			setCategories([ ...categories.map((category, index) => {
-				index === 0 ? category.active = true : category.active = false;
-			})])
-		}else{
-			newCategories[catIndex].active = !newCategories[catIndex].active;
-			newCategories[0].active = false;
-		}
-		setCategories(newCategories);
-	}
-
-	const setMobileCategoryActive = (catIndex) => {
-		const newCategories = [ ...categories ];
 
 		setCategories([ ...categories.map((category, index) => {
-			index === catIndex ? category.mobileActive = true : category.mobileActive = false;
+			index == catIndex ? category.active = true : category.active = false;
+			return category;
 		})])
+	}
+
+	const renderBlogPosts = () => {
+		const activeCatName = categories.filter((category) => category.active)[0].name;
+		const test = allPostsData.filter((post) => post.category == activeCatName);
+		console.log(activeCatName);
+		console.log(test);
+
+		return (
+			test.map(({ id, imagePath, category, date, extract, title }) => (
+				<li key={id} className="w-full md:w-full lg:w-[48%] mb-10">
+					<div className="relative sm:h-[23vh] h-[275px]">
+						<Image className="absolute bottom-0 left-0 object-cover" src={imagePath} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" alt="" />
+						<div className="absolute -bottom-5 left-8 bg-black p-3">
+							<p className="text-primary font-courgette">
+								Posted In:
+								<span className="text-white">{` ${category}`}</span>
+							</p>
+						</div>
+						<div className="absolute top-3 right-3 bg-black p-3">
+							<p className="font-courgette text-primary ont-bold">{date}</p>
+						</div>
+					</div>
+					<p className="mb-3 uppercase font-bold mt-10">{title}</p>
+					<p className="mb-3">{extract}</p>
+					<Link className="font-courgette text-primary font-bold" href={`/blog/${id}`}>
+						Continue Reading
+					</Link>
+				</li>
+				))
+			)
 	}
 
 	return (
@@ -104,36 +123,17 @@ const Blog = ({ allPostsData }) => {
 					<div className="w-full md:w-1/2 lg:w-2/3 lg:pr-4">
 						<div className="flex justify-evenly mb-5">
 							<label className="font-bold" htmlFor={catLabelId}>Select Category: </label>
-							<select className="border-2 border-black" id={catLabelId} onChange={e => setMobileCategoryActive(e.target.value)}>
+							<select className="border-2 border-black" id={catLabelId} onChange={e => setCategoryActive(e.target.value)}>
 								{categories.map((category, index) => (
-									<option className="" key={index} value={category.name}>{category.name}</option>
+									<option className="" key={index} value={index}>{category.name}</option>
 								))}
 							</select>
 						</div>
 						<ul className="flex flex-wrap justify-between">
-							{allPostsData.map(({ id, imagePath, category, date, extract, title }) => (
-							<li key={id} className="w-full md:w-full lg:w-[48%] mb-10">
-								<div className="relative sm:h-[23vh] h-[275px]">
-									<Image className="absolute bottom-0 left-0 object-cover" src={imagePath} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" alt="" />
-									<div className="absolute -bottom-5 left-8 bg-black p-3">
-										<p className="text-primary font-courgette">
-											Posted In:
-											<span className="text-white">{` ${category}`}</span>
-										</p>
-									</div>
-									<div className="absolute top-3 right-3 bg-black p-3">
-										<p className="font-courgette text-primary ont-bold">{date}</p>
-									</div>
-								</div>
-								<p className="mb-3 uppercase font-bold mt-10">{title}</p>
-								<p className="mb-3">{extract}</p>
-								<Link className="font-courgette text-primary font-bold" href={`/blog/${id}`}>
-									Continue Reading
-								</Link>
-							</li>
-							))}
+							{renderBlogPosts()}
 						</ul>
 					</div>
+					{getFilteredPosts()}
 					<div className="md:w-1/2 lg:w-1/3 pl-4 hidden md:block">
 						<div className="border-4 border-greyAlt px-10 py-16 relative">
 							<div className="absolute left-1/2 -top-3 -translate-x-1/2 z-10 w-3/5 border-l-4 border-r-4 border-greyAlt bg-white flex items-center justify-center font-poppins font-bold text-lg">
