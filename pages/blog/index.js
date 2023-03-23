@@ -21,15 +21,6 @@ const Blog = ({ allPostsData }) => {
 		return allPostsData.filter((post) => post.category === category).length;
 	}
 
-	const getFilteredPosts = () => {
-		const activeCatName = categories.filter((category) => category.active)[0].name;
-		const test = allPostsData.filter((post) => post.category == activeCatName);
-		console.log(activeCatName);
-		console.log(test);
-		// return test;
-		// return allPostsData.filter((post) => post.category === activeCatName);
-	}
-
 	const [categories, setCategories] = useState([		
 		{
 			name: "All",
@@ -37,19 +28,19 @@ const Blog = ({ allPostsData }) => {
 			posts: allPostsData.length,
 		},
 		{
-			name: "Category 1",
+			name: "React",
 			active: true,
-			posts: countCategoryPosts("Category 1"),
+			posts: countCategoryPosts("React"),
 		},
 		{
-			name: "Category 2",
+			name: "Next.js",
 			active: false,
-			posts: countCategoryPosts("Category 2"),
+			posts: countCategoryPosts("Next.js"),
 		},
 		{
-			name: "Category 3",
+			name: "Other",
 			active: false,
-			posts: countCategoryPosts("Category 3"),
+			posts: countCategoryPosts("Other"),
 		},
 		{
 			name: "Category 4",
@@ -79,12 +70,14 @@ const Blog = ({ allPostsData }) => {
 
 	const renderBlogPosts = () => {
 		const activeCatName = categories.filter((category) => category.active)[0].name;
-		const test = allPostsData.filter((post) => post.category == activeCatName);
+		let postsToRender = allPostsData;
+		if(activeCatName !== "All"){
+			postsToRender = allPostsData.filter((post) => post.category == activeCatName);
+		}
 		console.log(activeCatName);
-		console.log(test);
 
 		return (
-			test.map(({ id, imagePath, category, date, extract, title }) => (
+			postsToRender.map(({ id, imagePath, category, date, extract, title }) => (
 				<li key={id} className="w-full md:w-full lg:w-[48%] mb-10">
 					<div className="relative sm:h-[23vh] h-[275px]">
 						<Image className="absolute bottom-0 left-0 object-cover" src={imagePath} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" alt="" />
@@ -121,7 +114,7 @@ const Blog = ({ allPostsData }) => {
 			<section className="max-w-theme mx-auto pt-10 lg:py-20 lg:pb-10 px-3">
 				<div className="flex">
 					<div className="w-full md:w-1/2 lg:w-2/3 lg:pr-4">
-						<div className="flex justify-evenly mb-5">
+						<div className="md:hidden flex justify-evenly mb-5">
 							<label className="font-bold" htmlFor={catLabelId}>Select Category: </label>
 							<select className="border-2 border-black" id={catLabelId} onChange={e => setCategoryActive(e.target.value)}>
 								{categories.map((category, index) => (
@@ -133,7 +126,6 @@ const Blog = ({ allPostsData }) => {
 							{renderBlogPosts()}
 						</ul>
 					</div>
-					{getFilteredPosts()}
 					<div className="md:w-1/2 lg:w-1/3 pl-4 hidden md:block">
 						<div className="border-4 border-greyAlt px-10 py-16 relative">
 							<div className="absolute left-1/2 -top-3 -translate-x-1/2 z-10 w-3/5 border-l-4 border-r-4 border-greyAlt bg-white flex items-center justify-center font-poppins font-bold text-lg">
