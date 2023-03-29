@@ -4,11 +4,12 @@ date: "2020-03-02"
 imagePath: "/blog/lets-talk-tailwind/latest.jpg"
 extract: "salamander a lied porpoise much over tightly circa horse taped so innocuously outside crud mightily rigorous negative one inside gorilla and drew humbly"
 category: "Other"
+heroImage: "/blog/lets-talk-tailwind/hero.jpg"
+lead: "Unless you've been living under a rock for the last couple of years, you've probably heard of Tailwind CSS. If not, you've come to the right place."
 ---
 
-Next.js has two forms of pre-rendering: **Static Generation** and **Server-side Rendering**. The difference is in **when** it generates the HTML for a page.
+### What is Tailwind CSS?
 
-- **Static Generation** is the pre-rendering method that generates the HTML at **build time**. The pre-rendered HTML is then _reused_ on each request.
-- **Server-side Rendering** is the pre-rendering method that generates the HTML on **each request**.
+On the official site Tailwind CSS is described as "A utility-first CSS framework packed with classes like flex, pt-4, text-center and rotate-90 that can be composed to build any design, directly in your markup." So what does that mean? Basically, instead of writing out custom CSS for each component you write pre-existing classes (Tailwind classes) for each style that your HTML requires as you write the markup. This saves us building out large CSS files that grow as we progress through the build.
 
-Importantly, Next.js lets you **choose** which pre-rendering form to use for each page. You can create a "hybrid" Next.js app by using Static Generation for most pages and using Server-side Rendering for others.
+![Alt text](/blog/lets-talk-tailwind/first.jpg)

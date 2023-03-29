@@ -3,15 +3,16 @@ import fs from "fs";
 import matter from "gray-matter";
 import md from "markdown-it";
 import Image from "next/image";
+import styles from './[slug].module.css'
 
 // The page for each post
 export default function Post({ frontmatter, content }) {
-	const { title, category, date, heroImage, mins } = frontmatter;
+	const { title, category, date, heroImage, mins, lead } = frontmatter;
 
 	return (
 		<>
 			<section className="max-w-themeSmall mx-auto">
-				<Image className="mb-8" src={heroImage} width={770} height={393} alt="test" />
+				<Image className="mb-8" src={heroImage} width={770} height={393} alt="" />
 				<div className="flex flex-col items-center">
 					<h1 className="text-xl font-poppins font-bold mb-2">{title}</h1>
 					<div className="flex items-center mb-6">
@@ -21,10 +22,10 @@ export default function Post({ frontmatter, content }) {
 						<div className="h-1 w-1 rounded-full bg-black mx-3"></div>
 						<p>{category}</p>
 					</div>
-					<Image className="mb-5" src="/bolt.jpg" width={50} height={10} alt="test" />
+					<Image className="mb-5" src="/bolt.jpg" width={50} height={10} alt="" />
 				</div>
-				<h3></h3>
-				<div dangerouslySetInnerHTML={{ __html: md().render(content) }} />
+				<h3 className="font-poppins text-lg font-bold mb-8 text-center">{lead}</h3>
+				<div className={styles.blog} dangerouslySetInnerHTML={{ __html: md().render(content) }} />
 			</section>
 		</>
 	);

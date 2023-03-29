@@ -1,0 +1,15 @@
+.blog {
+    font-family: "Poppins", Arial, sans-serif;
+}
+
+.blog h3 {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.blog p {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
