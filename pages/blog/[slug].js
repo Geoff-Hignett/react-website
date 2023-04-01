@@ -14,7 +14,7 @@ export default function Post({ frontmatter, content }) {
 			<section className="max-w-themeSmall mx-auto">
 				<Image className="mb-8" src={heroImage} width={770} height={393} alt="" />
 				<div className="flex flex-col items-center">
-					<h1 className="text-xl font-poppins font-bold mb-2">{title}</h1>
+					<h1 className="text-3xl font-poppins font-bold mb-2">{title}</h1>
 					<div className="flex items-center mb-6">
 						<p className="">{date}</p>
 						<div className="h-1 w-1 rounded-full bg-black mx-3"></div>
