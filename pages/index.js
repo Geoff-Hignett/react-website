@@ -65,7 +65,7 @@ export default function Home({ latestThreePosts }) {
 								</div>
 							</div>
 							<p className="mb-3 uppercase font-bold mt-10">{title}</p>
-							<p className="mb-3">{extract}</p>
+							<p className="mb-3 font-poppins">{extract}</p>
 							<Link className="font-courgette text-primary font-bold" href={`/blog/${id}`}>
 								Continue Reading
 							</Link>

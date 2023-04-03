@@ -1,4 +1,3 @@
-import SectionBanner from "@/components/sectionBanner";
 import fs from "fs";
 import matter from "gray-matter";
 import md from "markdown-it";
@@ -11,7 +10,7 @@ export default function Post({ frontmatter, content }) {
 
 	return (
 		<>
-			<section className="max-w-themeSmall mx-auto">
+			<section className="max-w-themeSmall mx-auto px-3">
 				<Image className="mb-8" src={heroImage} width={770} height={393} alt="" />
 				<div className="flex flex-col items-center">
 					<h1 className="text-3xl font-poppins font-bold mb-2">{title}</h1>
