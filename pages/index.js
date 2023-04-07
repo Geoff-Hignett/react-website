@@ -64,7 +64,7 @@ export default function Home({ latestThreePosts }) {
 									<p className="font-courgette text-primary ont-bold">{date}</p>
 								</div>
 							</div>
-							<p className="mb-3 uppercase font-bold mt-10">{title}</p>
+							<p className="mb-3 text-xl font-bold mt-10">{title}</p>
 							<p className="mb-3 font-poppins">{extract}</p>
 							<Link className="font-courgette text-primary font-bold" href={`/blog/${id}`}>
 								Continue Reading

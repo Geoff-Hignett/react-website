@@ -24,12 +24,12 @@ const Blog = ({ allPostsData }) => {
 	const [categories, setCategories] = useState([		
 		{
 			name: "All",
-			active: false,
+			active: true,
 			posts: allPostsData.length,
 		},
 		{
 			name: "React",
-			active: true,
+			active: false,
 			posts: countCategoryPosts("React"),
 		},
 		{
@@ -41,21 +41,6 @@ const Blog = ({ allPostsData }) => {
 			name: "Other",
 			active: false,
 			posts: countCategoryPosts("Other"),
-		},
-		{
-			name: "Category 4",
-			active: false,
-			posts: countCategoryPosts("Category 4"),
-		},
-		{
-			name: "Category 5",
-			active: false,
-			posts: countCategoryPosts("Category 5"),
-		},
-		{
-			name: "Category 6",
-			active: false,
-			posts: countCategoryPosts("Category 6"),
 		},
 	]);
 
@@ -91,7 +76,7 @@ const Blog = ({ allPostsData }) => {
 							<p className="font-courgette text-primary ont-bold">{date}</p>
 						</div>
 					</div>
-					<p className="mb-3 uppercase font-bold mt-10">{title}</p>
+					<p className="mb-3 text-xl font-bold mt-10">{title}</p>
 					<p className="mb-3 font-poppins">{extract}</p>
 					<Link className="font-courgette text-primary font-bold" href={`/blog/${id}`}>
 						Continue Reading
