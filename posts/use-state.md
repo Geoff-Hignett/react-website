@@ -27,6 +27,6 @@ You should only call Hooks from React functions and not regular JavaScript ones.
 
 Take a look at **rows 3 and 7** to see how to implement useEffect. Since setting a localStorage value falls outside the scope of React this should be done inside useEffect. useEffect takes **two arguments**. The **first is a function** and the **second is an optional dependency array**. Notice that our dependency array on **line 9** is empty. This tells the Hook to **run only on first render**. If we removed the array, useEffect would **run on every render**.
 
-Now let's look at a slightly more complex situation involving state. This time we cannot choose our dependencies. Since our Hook uses the reactive value _name_ we must declare it as a dependency. If _name_ changes, localStorage will be reset.
+Now let's look at a slightly more complex situation involving state. This time we cannot choose our dependencies. Since our Hook uses the reactive value _name_ we must declare it as a dependency. If _name_ changes, localStorage will be reset. Whenever declared dependencies are subjected to change, useEffect will be triggered.
 
 ![tailwind css for blog page](/blog/use-state/second.jpg)
