@@ -6,7 +6,7 @@ extract: "After useState, the useEffect hook is the most commonly used and neces
 category: "React"
 heroImage: "/blog/use-state/hero.jpg"
 lead: "After useState, the useEffect hook is the most commonly used and necessary to understand. Once you get your head around when to use it, you will realise how important it is."
-mins: ""
+mins: "2"
 ---
 
 ### A Refresher on Hooks
@@ -30,3 +30,11 @@ Take a look at **rows 3 and 7** to see how to implement useEffect. Since setting
 Now let's look at a slightly more complex situation involving state. This time we cannot choose our dependencies. Since our Hook uses the reactive value _name_ we must declare it as a dependency. If _name_ changes, localStorage will be reset. Whenever declared dependencies are subjected to change, useEffect will be triggered.
 
 ![tailwind css for blog page](/blog/use-state/second.jpg)
+
+### useEffect Cleanup
+
+There are occasions when we don't actually want the side effect to be executed. Imagine you have an API request inside useEffect, but the component gets removed from the DOM while it is making the request. Since we no longer require the request, it should be aborted. We want our application to run optimally and not be exposed to memory leaks, for instance. We can use **return()** inside useEffect to cancel it. Look at the image below. It shows how we might clean up a setTimeout used inside useEffect.
+
+![tailwind css for blog page](/blog/use-state/third.jpg)
+
+When creating useEffect Hooks, always think ahead and consider how unwanted and unpredictable behaviours might be prevented with the cleanup function.
